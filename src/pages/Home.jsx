@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 const images = [
   "/hero1.jpg",
@@ -8,11 +9,58 @@ const images = [
   "/hero5.jpg",
 ];
 
+const kineticWords = [
+  { text: "CREATE", color: "text-white" },
+  { text: "MOVE", color: "text-red-600" },
+  { text: "QUESTION", color: "text-orange-400" },
+  { text: "BUILD", color: "text-neutral-300" },
+  { text: "EXPRESS", color: "text-red-500" },
+  { text: "EVOLVE", color: "text-white" },
+];
+
 export default function Home() {
+
+  /* ================= HERO CONTROLS ================= */
+  const heroRef = useRef(null);
+  const heroInView = useInView(heroRef, { amount: 0.5 });
+  const heroControls = useAnimation();
+
+  /* ================= STAGE CONTROLS ================= */
+  const stageRef = useRef(null);
+  const stageInView = useInView(stageRef, { amount: 0.6 });
+
+  const bgControls = useAnimation();
+  const textControls = useAnimation();
+
+  /* HERO ANIMATION */
+  useEffect(() => {
+    if (heroInView) {
+      heroControls.start("visible");
+    } else {
+      heroControls.start("hidden");
+    }
+  }, [heroInView, heroControls]);
+
+  /* STAGE ANIMATION */
+  useEffect(() => {
+    if (stageInView) {
+      bgControls.start("visible").then(() => {
+        textControls.start("visible");
+      });
+    } else {
+      bgControls.start("hidden");
+      textControls.start("hidden");
+    }
+  }, [stageInView, bgControls, textControls]);
+
   return (
     <>
-      {/* ================= HERO SECTION ================= */}
-      <section className="relative min-h-screen overflow-hidden">
+      {/* ================= HERO ================= */}
+      <section
+        ref={heroRef}
+        className="relative min-h-screen overflow-hidden"
+      >
+        {/* Background strips */}
         <div className="absolute inset-0 grid grid-cols-5">
           {images.map((img, i) => (
             <motion.div
@@ -26,135 +74,158 @@ export default function Home() {
           ))}
         </div>
 
+        {/* overlays */}
         <div className="absolute inset-0 bg-black/80" />
         <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 via-transparent to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-16 pt-48">
-          <motion.h1
-            initial={{ opacity: 0, x: -80 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9 }}
-            className="text-[clamp(2.6rem,6vw,5.2rem)] font-extrabold leading-[0.98]"
-          >
+        {/* content */}
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, x: -80 },
+            visible: {
+              opacity: 1,
+              x: 0,
+              transition: { duration: 0.9 },
+            },
+          }}
+          initial="hidden"
+          animate={heroControls}
+          className="relative z-10 max-w-7xl mx-auto px-16 pt-48"
+        >
+          <h1 className="text-[clamp(2.6rem,6vw,5.2rem)] font-extrabold leading-[0.95]">
             Not one passion.
             <br />
             <span className="text-red-600">Every single one.</span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, x: -60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.25, duration: 0.8 }}
-            className="mt-8 max-w-xl text-white/70"
-          >
+          <p className="mt-8 max-w-xl text-white/70 text-lg">
             Arts · Sports · Education · Technology · Culture
             <br />
             Different worlds. One stage.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5, duration: 0.7 }}
-            className="mt-12 flex gap-8"
-          >
-            <button className="px-10 py-3 bg-red-600 text-sm tracking-widest hover:bg-red-700">
+          <div className="mt-12 flex gap-8">
+            <button className="px-10 py-3 bg-red-600 text-sm tracking-widest hover:bg-red-700 transition">
               ENTER EXPERIENCE
             </button>
-            <button className="px-10 py-3 border border-white/30 text-sm tracking-widest hover:bg-white/10">
+
+            <button className="px-10 py-3 border border-white/30 text-sm tracking-widest hover:bg-white/10 transition">
               VIEW SPEAKERS
             </button>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </section>
 
-      {/* ================= FUTURISTIC KINETIC SECTION ================= */}
-      <section className="relative min-h-screen bg-black overflow-hidden flex items-center justify-center">
-
-        {/* ANIMATED GRADIENT FLOW */}
-        <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 via-transparent to-cyan-400/10 animate-gradientSlow" />
-
-        {/* DIAGONAL MOTION LINES */}
-        <div
-          className="
-            absolute inset-0
-            bg-[repeating-linear-gradient(
-              -45deg,
-              rgba(255,255,255,0.04),
-              rgba(255,255,255,0.04)_1px,
-              transparent_1px,
-              transparent_80px
-            )]
-            opacity-20
-          "
+      {/* ================= STAGE SECTION ================= */}
+      <section
+        ref={stageRef}
+        className="relative h-screen min-h-[100svh] overflow-hidden bg-black"
+      >
+        {/* BACKGROUND */}
+        <motion.div
+          variants={{
+            hidden: {
+              opacity: 0,
+              scale: 1.25,
+              filter: "brightness(0.25)",
+            },
+            visible: {
+              opacity: 1,
+              scale: 1.05,
+              filter: "brightness(1)",
+              transition: { duration: 2 },
+            },
+          }}
+          initial="hidden"
+          animate={bgControls}
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url(/section2bg.jpg)" }}
         />
 
-        {/* COLOR GLOWS */}
-        <div className="absolute w-[520px] h-[520px] bg-red-600/30 blur-[180px] rounded-full -top-40 -left-40" />
-        <div className="absolute w-[420px] h-[420px] bg-orange-500/20 blur-[180px] rounded-full top-1/2 left-1/3" />
-        <div className="absolute w-[420px] h-[420px] bg-cyan-400/20 blur-[180px] rounded-full bottom-0 right-0" />
+        {/* overlays */}
+        <motion.div
+          variants={{
+            hidden: { opacity: 1 },
+            visible: { opacity: 0 },
+          }}
+          initial="hidden"
+          animate={bgControls}
+          transition={{ duration: 1.5 }}
+          className="absolute inset-0 bg-black"
+        />
 
-        {/* WORDS */}
-        <div className="relative z-10 text-center px-8">
-          {["CREATE", "MOVE", "QUESTION", "BUILD", "EXPRESS", "EVOLVE"].map(
-            (word, i) => (
-              <motion.h2
-                key={word}
-                initial={{
+        <motion.div
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 0.55 },
+          }}
+          initial="hidden"
+          animate={bgControls}
+          transition={{ delay: 1.1, duration: 1 }}
+          className="absolute inset-0 bg-black"
+        />
+
+        <motion.div
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1 },
+          }}
+          initial="hidden"
+          animate={bgControls}
+          transition={{ delay: 1.2, duration: 1 }}
+          className="absolute inset-0 bg-gradient-to-b from-red-600/30 via-transparent to-black/80"
+        />
+
+        {/* TEXT */}
+        <div className="relative z-10 h-full flex flex-col justify-center items-center gap-2 text-center px-6">
+
+          {kineticWords.map((item, i) => (
+            <motion.h2
+              key={item.text}
+              variants={{
+                hidden: {
                   opacity: 0,
-                  x: i % 2 === 0 ? -200 : 200,
-                  filter: "blur(10px)",
-                }}
-                whileInView={{
+                  x: i % 2 === 0 ? -220 : 220,
+                },
+                visible: {
                   opacity: 1,
                   x: 0,
-                  filter: "blur(0px)",
-                }}
-                transition={{
-                  delay: i * 0.18,
-                  duration: 0.9,
-                  ease: "easeOut",
-                }}
-                viewport={{ once: true }}
-                className="
-                  text-[clamp(3.2rem,8vw,6.2rem)]
-                  font-black
-                  leading-[0.95]
-                  tracking-tight
-                  bg-gradient-to-r
-                  from-[#E62B1E]
-                  via-[#ff7a18]
-                  to-[#22d3ee]
-                  bg-[length:300%_300%]
-                  animate-gradient
-                  text-transparent
-                  bg-clip-text
-                "
-              >
-                {word}
-              </motion.h2>
-            )
-          )}
+                  transition: {
+                    delay: i * 0.22,
+                    duration: 0.85,
+                  },
+                },
+              }}
+              initial="hidden"
+              animate={textControls}
+              className={`
+                text-[clamp(1.6rem,4.5vw,3.1rem)]
+                font-black
+                leading-[1]
+                tracking-tight
+                ${item.color}
+              `}
+            >
+              {item.text}
+            </motion.h2>
+          ))}
 
-          {/* WAVEFORM */}
-          <div className="mx-auto mt-14 h-[3px] w-44 overflow-hidden rounded-full bg-white/10">
-            <motion.div
-              animate={{ x: ["-100%", "100%"] }}
-              transition={{ duration: 2.4, repeat: Infinity, ease: "linear" }}
-              className="h-full w-1/2 bg-gradient-to-r from-transparent via-red-500 to-transparent"
-            />
-          </div>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={textControls}
+            variants={{
+              visible: {
+                scaleX: 1,
+                transition: { delay: 1.6, duration: 0.8 },
+              },
+            }}
+            className="mt-6 h-[3px] w-44 bg-red-600 origin-left rounded-full"
+          />
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 1.4 }}
-            viewport={{ once: true }}
-            className="mt-10 text-white/70 tracking-[0.35em] text-xs"
-          >
+          <p className="mt-4 text-white/60 tracking-[0.35em] text-[10px]">
             DIFFERENT ENERGIES · ONE PLATFORM
-          </motion.p>
+          </p>
         </div>
       </section>
     </>
