@@ -1,6 +1,7 @@
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 import AboutTed from "./AboutTed.jsx";
+import AboutTedSsec from "../components/AboutTedSsec.jsx";
 
 const images = [
   "/hero1.jpg",
@@ -198,7 +199,7 @@ export default function Home() {
                 text-[clamp(1.6rem,4.5vw,3.1rem)]
                 font-black
                 leading-[1]
-                tracking-widest
+                tracking-wide
                 ${item.color}
               `}
             >
@@ -228,6 +229,7 @@ export default function Home() {
           ABOUT TEDx SECTION
       ======================================================= */}
       <AboutTed />
+      <AboutTedSsec />
     </>
   );
 }
