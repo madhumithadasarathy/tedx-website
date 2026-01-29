@@ -8,16 +8,6 @@ const images = [
   "/hero5.jpg",
 ];
 
-const fragments = [
-  "Someone practiced in silence for years.",
-  "Someone failed loudly before succeeding quietly.",
-  "Someone carried an idea no one believed in.",
-  "Someone chose curiosity over comfort.",
-  "Someone spoke even when their voice shook.",
-  "Someone turned fear into fuel.",
-  "Someone created without permission.",
-];
-
 export default function Home() {
   return (
     <>
@@ -79,83 +69,59 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ================= SECTION 2 ================= */}
-      <section className="relative min-h-screen bg-black overflow-hidden flex items-center justify-center">
-        <div className="absolute inset-0 pointer-events-none">
-          {fragments.map((text, i) => (
-            <motion.p
-              key={i}
-              initial={{ opacity: 0, y: 80 }}
-              whileInView={{ opacity: 0.25, y: 0 }}
-              transition={{ delay: i * 0.15 }}
-              viewport={{ once: true }}
-              className="absolute top-1/2 left-1/2 text-white/40 text-sm md:text-base"
-              style={{
-                transform: `translate(${(i - 3) * 140}px, ${(i % 2 ? -1 : 1) * 140}px)`
-              }}
-            >
-              {text}
-            </motion.p>
-          ))}
-        </div>
-
-        <div className="relative z-10 text-center px-8">
-          <motion.h2
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-[clamp(2.4rem,5vw,4.5rem)] font-extrabold"
-          >
-            Not performers.
-            <br />
-            Not celebrities.
-          </motion.h2>
-
-          <p className="mt-6 text-white/70">
-            Just people driven by something deeper.
-          </p>
-        </div>
-      </section>
-
-      {/* ================= SECTION 3 — FUTURISTIC ================= */}
+      {/* ================= FUTURISTIC KINETIC SECTION ================= */}
       <section className="relative min-h-screen bg-black overflow-hidden flex items-center justify-center">
 
-        {/* TECH GRID */}
+        {/* ANIMATED GRADIENT FLOW */}
+        <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 via-transparent to-cyan-400/10 animate-gradientSlow" />
+
+        {/* DIAGONAL MOTION LINES */}
         <div
           className="
             absolute inset-0
-            bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),
-                linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)]
-            bg-[size:90px_90px]
+            bg-[repeating-linear-gradient(
+              -45deg,
+              rgba(255,255,255,0.04),
+              rgba(255,255,255,0.04)_1px,
+              transparent_1px,
+              transparent_80px
+            )]
             opacity-20
           "
         />
 
-        {/* GLOWS */}
-        <div className="absolute w-[520px] h-[520px] bg-red-600/25 blur-[180px] rounded-full -top-40 -left-40" />
-        <div className="absolute w-[480px] h-[480px] bg-orange-500/20 blur-[180px] rounded-full top-1/2 left-1/3" />
+        {/* COLOR GLOWS */}
+        <div className="absolute w-[520px] h-[520px] bg-red-600/30 blur-[180px] rounded-full -top-40 -left-40" />
+        <div className="absolute w-[420px] h-[420px] bg-orange-500/20 blur-[180px] rounded-full top-1/2 left-1/3" />
         <div className="absolute w-[420px] h-[420px] bg-cyan-400/20 blur-[180px] rounded-full bottom-0 right-0" />
 
-        {/* KINETIC TEXT */}
+        {/* WORDS */}
         <div className="relative z-10 text-center px-8">
           {["CREATE", "MOVE", "QUESTION", "BUILD", "EXPRESS", "EVOLVE"].map(
             (word, i) => (
               <motion.h2
                 key={word}
-                initial={{ opacity: 0, y: 60, filter: "blur(12px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ delay: i * 0.15, duration: 0.85 }}
-                viewport={{ once: true }}
-                whileHover={{
-                  x: -8 + Math.random() * 16,
-                  y: -5 + Math.random() * 10,
+                initial={{
+                  opacity: 0,
+                  x: i % 2 === 0 ? -200 : 200,
+                  filter: "blur(10px)",
                 }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                  filter: "blur(0px)",
+                }}
+                transition={{
+                  delay: i * 0.18,
+                  duration: 0.9,
+                  ease: "easeOut",
+                }}
+                viewport={{ once: true }}
                 className="
                   text-[clamp(3.2rem,8vw,6.2rem)]
                   font-black
                   leading-[0.95]
                   tracking-tight
-                  cursor-default
                   bg-gradient-to-r
                   from-[#E62B1E]
                   via-[#ff7a18]
@@ -171,7 +137,7 @@ export default function Home() {
             )
           )}
 
-          {/* WAVE LINE */}
+          {/* WAVEFORM */}
           <div className="mx-auto mt-14 h-[3px] w-44 overflow-hidden rounded-full bg-white/10">
             <motion.div
               animate={{ x: ["-100%", "100%"] }}
@@ -183,7 +149,7 @@ export default function Home() {
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ delay: 1.3 }}
+            transition={{ delay: 1.4 }}
             viewport={{ once: true }}
             className="mt-10 text-white/70 tracking-[0.35em] text-xs"
           >
