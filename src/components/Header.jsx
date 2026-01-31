@@ -6,9 +6,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 
 const navItems = [
-  { name: "EXPERIENCE", path: "/experience" },
+  { name: "ABOUT", path: "/about" },
   { name: "SPEAKERS", path: "/speakers" },
-  { name: "PROGRAM", path: "/program" },
+  { name: "SPONSORS", path: "/sponsors" },
   { name: "ATTEND", path: "/attend", cta: true },
 ];
 
@@ -53,8 +53,8 @@ export default function Header() {
         {/* LOGO */}
         <NavLink
           to="/"
-          className="text-sm tracking-widest font-semibold"
           onClick={() => setOpen(false)}
+          className="text-sm tracking-widest font-semibold"
         >
           TEDx <span className="text-red-600">Sairam</span>
         </NavLink>
@@ -77,8 +77,7 @@ export default function Header() {
                     transition
                   `
                   : `
-                    relative
-                    transition
+                    relative transition
                     ${
                       isActive
                         ? "text-red-500"

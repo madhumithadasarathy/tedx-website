@@ -4,9 +4,9 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 import Home from "./pages/Home";
-import Experience from "./pages/Experience";
+import About from "./pages/About";
 import Speakers from "./pages/Speakers";
-import Program from "./pages/Program";
+import Sponsors from "./pages/Sponsors";
 import Attend from "./pages/Attend";
 
 export default function App() {
@@ -16,9 +16,9 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/experience" element={<Experience />} />
+        <Route path="/about" element={<About />} />
         <Route path="/speakers" element={<Speakers />} />
-        <Route path="/program" element={<Program />} />
+        <Route path="/sponsors" element={<Sponsors />} />
         <Route path="/attend" element={<Attend />} />
       </Routes>
 
