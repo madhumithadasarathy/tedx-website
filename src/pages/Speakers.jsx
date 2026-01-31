@@ -1,9 +1,8 @@
 export default function Speakers() {
   return (
     <main className="w-full">
-      {/* FULL SCREEN HERO */}
       <section
-        className="relative h-[100svh] w-full flex items-center justify-center overflow-hidden"
+        className="h-[100svh] flex flex-col items-center justify-center text-center"
         style={{
           background: `
             radial-gradient(
@@ -17,18 +16,15 @@ export default function Speakers() {
           `,
         }}
       >
-        {/* CONTENT */}
-        <div className="relative z-10 text-center px-6">
-          {/* ONE WORD */}
-          <h1 className="text-[clamp(3.5rem,10vw,7rem)] font-extrabold tracking-[0.3em] text-black">
-            VOICES
-          </h1>
+        {/* CAPTION */}
+        <p className="mb-2 font-bold text-sm md:text-base tracking-[0.45em] uppercase text-black/70">
+          Meet the minds behind the ideas.
+        </p>
 
-          {/* CAPTION */}
-          <p className="mt-6 text-sm md:text-base tracking-[0.35em] text-black/70 uppercase">
-            Ideas worth hearing
-          </p>
-        </div>
+        {/* HERO WORD */}
+        <h1 className="font-anton text-red-600 leading-none text-[clamp(6rem,18vw,20rem)]">
+          INNOVATORS
+        </h1>
       </section>
     </main>
   );
