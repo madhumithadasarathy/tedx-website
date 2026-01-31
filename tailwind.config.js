@@ -4,6 +4,10 @@ export default {
     extend: {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
+       anton: ["Anton", "sans-serif"],
+      },
+            colors: {
+        tedx: "#E62B1E",
       },
     },
   },
