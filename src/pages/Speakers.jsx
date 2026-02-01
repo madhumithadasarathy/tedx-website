@@ -1,6 +1,7 @@
 import { motion, useAnimationControls } from "framer-motion";
 import { useEffect } from "react";
 import Orbit from "../components/Orbit.jsx";
+import Cta from "../components/Cta.jsx";
 
 export default function Speakers() {
   const titleControls = useAnimationControls();
@@ -149,6 +150,7 @@ export default function Speakers() {
         </motion.div>
       </section>
       <Orbit />
+      <Cta />
     </main>
   );
 }
