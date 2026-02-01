@@ -1,5 +1,6 @@
 import { motion, useAnimationControls } from "framer-motion";
 import { useEffect } from "react";
+import Orbit from "../components/Orbit.jsx";
 
 export default function Speakers() {
   const titleControls = useAnimationControls();
@@ -147,6 +148,7 @@ export default function Speakers() {
           />
         </motion.div>
       </section>
+      <Orbit />
     </main>
   );
 }
