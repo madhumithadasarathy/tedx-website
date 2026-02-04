@@ -1,27 +1,29 @@
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
+import { Mic, Users, Zap } from "lucide-react";
 
 export default function AboutTed() {
-
   const sectionRef = useRef(null);
-  const inView = useInView(sectionRef, { amount: 0.5 });
-
+  const inView = useInView(sectionRef, { amount: 0.4 });
   const controls = useAnimation();
 
   useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    } else {
-      controls.start("hidden");
-    }
+    controls.start(inView ? "visible" : "hidden");
   }, [inView, controls]);
 
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen bg-black text-white overflow-hidden flex items-center"
+      className="
+        relative
+        h-screen
+        bg-black
+        text-white
+        overflow-hidden
+        flex
+        items-center
+      "
     >
-
       {/* STAGE LIGHT SWEEP */}
       <motion.div
         initial="hidden"
@@ -30,7 +32,7 @@ export default function AboutTed() {
           hidden: { opacity: 0 },
           visible: {
             opacity: 1,
-            transition: { duration: 1.2 },
+            transition: { duration: 0.5 }, // faster
           },
         }}
         className="
@@ -39,99 +41,111 @@ export default function AboutTed() {
         "
       />
 
-      {/* HORIZON LINE */}
-      <motion.div
-        initial="hidden"
-        animate={controls}
-        variants={{
-          hidden: { scaleX: 0 },
-          visible: {
-            scaleX: 1,
-            transition: { delay: 0.8, duration: 1 },
-          },
-        }}
-        className="absolute bottom-[38%] w-full h-[1px] bg-gradient-to-r from-transparent via-red-600 to-transparent origin-center"
-      />
-
       {/* CONTENT */}
-      <div className="relative z-10 max-w-7xl mx-auto px-10 w-full">
-
+      <div className="relative z-10 max-w-7xl mx-auto px-8 w-full">
         {/* TITLE */}
         <motion.div
           initial="hidden"
           animate={controls}
           variants={{
-            hidden: { opacity: 0, y: 50 },
+            hidden: { opacity: 0, y: 30 },
             visible: {
               opacity: 1,
               y: 0,
-              transition: { duration: 0.9 },
+              transition: { duration: 0.4 }, // faster
             },
           }}
           className="text-center"
         >
-          <p className="text-red-600 tracking-[0.35em] text-xs mb-6">
+          <p className="text-red-600 tracking-[0.35em] text-xs mb-4">
             ABOUT TEDx
           </p>
 
-          <h2 className="text-[clamp(3rem,7vw,5.5rem)] font-extrabold leading-[0.95]">
+          <h2 className="text-[clamp(2.6rem,6vw,5.2rem)] font-extrabold leading-[0.95]">
             Ideas worth
             <br />
             spreading.
           </h2>
         </motion.div>
 
-        {/* PILLARS */}
+        {/* CARDS */}
         <motion.div
           initial="hidden"
           animate={controls}
           variants={{
             visible: {
               transition: {
-                staggerChildren: 0.25,
-                delayChildren: 0.9,
+                staggerChildren: 0.08, // faster
+                delayChildren: 0.2,    // faster
               },
             },
           }}
-          className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-14 text-center"
+          className="
+            mt-14 md:mt-16
+            grid
+            grid-cols-1
+            md:grid-cols-3
+            gap-8
+          "
         >
           {[
             {
+              icon: Mic,
               title: "TALKS",
-              text: "Powerful short-format talks from voices shaping the future.",
+              text: "Short, powerful talks from voices shaping tomorrow.",
             },
             {
+              icon: Users,
               title: "COMMUNITY",
-              text: "Locally organized events driven by global curiosity.",
+              text: "Locally rooted events powered by global curiosity.",
             },
             {
+              icon: Zap,
               title: "IMPACT",
-              text: "Ideas that continue far beyond the stage lights.",
+              text: "Ideas that travel far beyond the stage.",
             },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              variants={{
-                hidden: { opacity: 0, y: 40 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.7 },
-                },
-              }}
-              className="relative"
-            >
-              <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-[1px] h-8 bg-red-600/60" />
+          ].map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={i}
+                variants={{
+                  hidden: { opacity: 0, y: 28 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.35 }, // faster
+                  },
+                }}
+                className="
+                  relative
+                  bg-white/5
+                  backdrop-blur
+                  border border-white/10
+                  rounded-2xl
+                  px-7 py-8
+                  text-center
+                  hover:border-red-600/40
+                  hover:bg-white/10
+                  transition
+                "
+              >
+                <div className="flex justify-center mb-5">
+                  <div className="w-12 h-12 rounded-full bg-red-600/15 flex items-center justify-center">
+                    <Icon className="w-5 h-5 text-red-600" />
+                  </div>
+                </div>
 
-              <h4 className="text-lg font-semibold tracking-wide">
-                {item.title}
-              </h4>
+                <h4 className="text-base font-semibold tracking-wide">
+                  {item.title}
+                </h4>
 
-              <p className="mt-4 text-white/65 text-sm leading-relaxed max-w-xs mx-auto">
-                {item.text}
-              </p>
-            </motion.div>
-          ))}
+                <p className="mt-3 text-white/65 text-sm leading-relaxed">
+                  {item.text}
+                </p>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>

@@ -1,17 +1,28 @@
 import React, { useEffect, useRef } from "react";
-import { motion, useAnimation, useInView, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useAnimation,
+  useInView,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 
 export default function AboutTedSsec() {
   const ref = useRef(null);
-  const inView = useInView(ref, { amount: 0.45 });
+  const inView = useInView(ref, { amount: 0.4 });
   const controls = useAnimation();
 
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const yLeft = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const yRight = useTransform(scrollYProgress, [0, 1], [200, -200]);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  // tighter parallax (less floaty, more responsive)
+  const yLeft = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const yRight = useTransform(scrollYProgress, [0, 1], [90, -90]);
 
   useEffect(() => {
-    inView ? controls.start("visible") : controls.start("hidden");
+    controls.start(inView ? "visible" : "hidden");
   }, [inView, controls]);
 
   return (
@@ -65,11 +76,11 @@ export default function AboutTedSsec() {
           initial="hidden"
           animate={controls}
           variants={{
-            hidden: { opacity: 0, x: -80 },
+            hidden: { opacity: 0, x: -50 },
             visible: {
               opacity: 1,
               x: 0,
-              transition: { duration: 0.9, ease: "easeOut" },
+              transition: { duration: 0.55, ease: "easeOut" },
             },
           }}
           style={{ y: yLeft }}
@@ -85,14 +96,14 @@ export default function AboutTedSsec() {
           </h2>
 
           <p className="mt-5 max-w-xl text-white/70 text-sm leading-relaxed">
-            TEDx is an independently organized event licensed by TED — following
+            TEDx is an independently organized event licensed by TED, following
             the global format of short, powerful talks while amplifying local
             voices.
           </p>
 
           <p className="mt-3 max-w-xl text-white/65 text-sm leading-relaxed">
             At Sri Sairam Engineering College, TEDx becomes a convergence of
-            innovation, creativity, technology and culture — where ideas are not
+            innovation, creativity, technology and culture, where ideas are not
             just shared, but experienced.
           </p>
 
@@ -118,7 +129,7 @@ export default function AboutTedSsec() {
                 "Talks merge with performance, emotion and silence — forming a fully immersive stage experience.",
               glow:
                 "bg-[radial-gradient(circle_at_30%_30%,rgba(255,122,24,0.22),transparent_65%)]",
-              delay: 0.2,
+              delay: 0.1,
             },
             {
               tag: "SAIRAM",
@@ -127,22 +138,22 @@ export default function AboutTedSsec() {
                 "Built at Sri Sairam Engineering College — driven by students, guided by vision.",
               glow:
                 "bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.18),transparent_65%)]",
-              delay: 0.4,
+              delay: 0.2,
             },
           ].map((card) => (
             <motion.div
               key={card.title}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, amount: 0.45 }}
+              viewport={{ once: false, amount: 0.4 }}
               variants={{
-                hidden: { opacity: 0, x: 90 },
+                hidden: { opacity: 0, x: 50 },
                 visible: {
                   opacity: 1,
                   x: 0,
                   transition: {
-                    delay: 1.15 + card.delay, // ✅ after text finishes
-                    duration: 0.7,
+                    delay: 0.15 + card.delay, // 🔥 no lag
+                    duration: 0.45,
                     ease: "easeOut",
                   },
                 },
@@ -158,9 +169,7 @@ export default function AboutTedSsec() {
               "
             >
               {/* glow */}
-              <div
-                className={`absolute inset-0 opacity-60 ${card.glow}`}
-              />
+              <div className={`absolute inset-0 opacity-60 ${card.glow}`} />
 
               {/* gradient edge */}
               <div className="absolute left-0 top-0 h-full w-[2px] bg-gradient-to-b from-orange-500 via-red-600 to-red-700" />
