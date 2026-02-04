@@ -281,6 +281,104 @@ export default function About() {
           </div>
         </div>
       </section>
+{/* ================= SECTION 4 : EVENT MILESTONES ================= */}
+<section className="relative w-full min-h-screen bg-black text-white overflow-hidden flex items-center">
+  {/* Background glow */}
+  <div className="absolute inset-0">
+    <div className="absolute -top-40 -left-40 w-[520px] h-[520px] bg-red-600/20 rounded-full blur-[200px]" />
+    <div className="absolute bottom-[-200px] right-1/4 w-[620px] h-[620px] bg-red-600/15 rounded-full blur-[240px]" />
+  </div>
+
+  <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 w-full">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+
+      {/* LEFT : TEXT BLOCK */}
+      <motion.div
+        initial={{ opacity: 0, x: -60 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: false }}
+        transition={{ duration: 1 }}
+        className="max-w-xl mx-auto lg:mx-0 text-center lg:text-left"
+      >
+        <span className="text-xs tracking-[0.35em] text-red-500">
+          EVENT MILESTONES
+        </span>
+
+        <h2 className="mt-4 text-4xl sm:text-5xl font-semibold leading-tight">
+          The Journey to{" "}
+          <span className="text-red-600">TEDxSEC</span>
+        </h2>
+
+        <p className="mt-6 text-gray-300 text-base sm:text-lg leading-relaxed">
+          A clearly defined progression leading up to a day of ideas,
+          conversations, and experiences designed to leave a lasting
+          impact. Each phase brings us closer to the moment where ideas
+          take the stage.
+        </p>
+      </motion.div>
+
+      {/* RIGHT : CONNECTED MILESTONES */}
+      <div className="relative flex flex-col gap-8 max-w-xl mx-auto lg:mx-0">
+        {[
+          {
+            phase: "REGISTRATION OPENS",
+            date: "04 FEB",
+            desc:
+              "Registrations are now open for individuals eager to engage with ideas that challenge and inspire.",
+          },
+          {
+            phase: "REGISTRATION CLOSES",
+            date: "11 FEB",
+            desc:
+              "Registrations conclude as we finalize speakers, sessions, and the experience.",
+          },
+          {
+            phase: "EVENT DAY",
+            date: "14 FEB",
+            desc:
+              "TEDx Sri Sairam Engineering College comes alive with talks, performances, and shared perspectives.",
+          },
+        ].map((item, i) => (
+          <motion.div
+            key={item.phase}
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false }}
+            transition={{ delay: i * 0.15, duration: 0.9 }}
+            className="relative"
+          >
+            {/* Connector line (desktop only) */}
+            {i < 2 && (
+              <div className="hidden lg:block absolute left-6 top-full h-8 w-[2px] bg-gradient-to-b from-red-600/60 to-transparent" />
+            )}
+
+            <div className="relative rounded-2xl backdrop-blur-xl bg-white/5 border border-white/10 p-5 pl-9">
+              {/* Dot */}
+              <div className="absolute left-4 top-5 w-2.5 h-2.5 rounded-full bg-red-600" />
+
+              <div className="text-[10px] tracking-[0.3em] text-red-500 mb-1">
+                {item.phase}
+              </div>
+
+              <div className="text-lg sm:text-xl font-semibold mb-2">
+                {item.date}
+              </div>
+
+              <p className="text-[13px] text-gray-300 leading-snug">
+                {item.desc}
+              </p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
     </>
   );
 }
