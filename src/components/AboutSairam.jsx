@@ -1,5 +1,11 @@
 import React, { useEffect, useRef } from "react";
-import { motion, useAnimation, useInView, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useAnimation,
+  useInView,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 
 import VerifiedIcon from "@mui/icons-material/Verified";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
@@ -12,11 +18,14 @@ export default function AboutSairam() {
   const inView = useInView(ref, { amount: 0.35 });
   const controls = useAnimation();
 
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
   const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   useEffect(() => {
-    inView ? controls.start("visible") : controls.start("hidden");
+    controls.start(inView ? "visible" : "hidden");
   }, [inView, controls]);
 
   const chips = [
@@ -72,19 +81,15 @@ export default function AboutSairam() {
       ref={ref}
       className="relative min-h-[100svh] w-full overflow-hidden text-white py-20 sm:py-28"
     >
-      {/* ================= BACKGROUND IMAGE ================= */}
+      {/* ================= BACKGROUND ================= */}
       <motion.div
         className="absolute inset-0 bg-cover bg-center scale-[1.1]"
         style={{ backgroundImage: "url(/sairam_main.jpg)", y: yBg }}
       />
 
-      {/* DARK CINEMATIC OVERLAY */}
       <div className="absolute inset-0 bg-black/80" />
-
-      {/* RED ATMOSPHERIC WASH */}
       <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 via-transparent to-black/90" />
 
-      {/* SUBTLE GRID */}
       <div
         className="absolute inset-0 opacity-[0.12]"
         style={{
@@ -99,17 +104,22 @@ export default function AboutSairam() {
         initial="hidden"
         animate={controls}
         variants={{
-          hidden: { opacity: 0, y: 40 },
+          hidden: { opacity: 0, y: 30 },
           visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.9, ease: "easeOut" },
+            transition: { duration: 0.65, ease: "easeOut" },
           },
         }}
-        className="relative z-10 max-w-7xl mx-auto px-5 sm:px-10"
+        className="
+          relative z-10
+          max-w-7xl mx-auto
+          px-5 sm:px-10
+          mt-10
+        "
       >
         {/* ================= CHIPS ================= */}
-        <div className="flex flex-wrap gap-2 mb-8">
+        <div className="flex flex-wrap gap-2 mb-10">
           {chips.map((c) => (
             <span
               key={c.label}
@@ -134,11 +144,11 @@ export default function AboutSairam() {
           {/* ================= LEFT ================= */}
           <motion.div
             variants={{
-              hidden: { opacity: 0, x: -60 },
+              hidden: { opacity: 0, x: -45 },
               visible: {
                 opacity: 1,
                 x: 0,
-                transition: { duration: 0.8, ease: "easeOut" },
+                transition: { duration: 0.6, ease: "easeOut" },
               },
             }}
             animate={controls}
@@ -179,16 +189,16 @@ export default function AboutSairam() {
           {/* ================= RIGHT ================= */}
           <motion.div
             variants={{
-              hidden: { opacity: 0, x: 60 },
+              hidden: { opacity: 0, x: 45 },
               visible: {
                 opacity: 1,
                 x: 0,
-                transition: { delay: 0.2, duration: 0.8 },
+                transition: { delay: 0.15, duration: 0.6, ease: "easeOut" },
               },
             }}
             animate={controls}
             initial="hidden"
-            className="lg:col-span-3 mt-10 lg:mt-0"
+            className="lg:col-span-3 mt-12 lg:mt-0"
           >
             <div className="flex items-center gap-2 mb-4">
               <TimelineIcon fontSize="small" />
@@ -201,15 +211,16 @@ export default function AboutSairam() {
               {timeline.map((t, i) => (
                 <motion.li
                   key={t.title}
-                  initial={{ opacity: 0, x: 25 }}
+                  initial={{ opacity: 0, x: 18 }}
                   animate={controls}
                   variants={{
                     visible: {
                       opacity: 1,
                       x: 0,
                       transition: {
-                        delay: 0.35 + i * 0.12,
-                        duration: 0.45,
+                        delay: 0.25 + i * 0.1,
+                        duration: 0.35,
+                        ease: "easeOut",
                       },
                     },
                   }}

@@ -17,7 +17,7 @@ export default function AboutTedSsec() {
     offset: ["start end", "end start"],
   });
 
-  // tighter parallax (less floaty, more responsive)
+  // tighter parallax (responsive, not floaty)
   const yLeft = useTransform(scrollYProgress, [0, 1], [60, -60]);
   const yRight = useTransform(scrollYProgress, [0, 1], [90, -90]);
 
@@ -30,13 +30,12 @@ export default function AboutTedSsec() {
       ref={ref}
       className="
         relative
-        min-h-[100svh]
+        h-screen
         bg-black
         text-white
         overflow-hidden
         flex
         items-center
-        py-16
       "
     >
       {/* ================= BACKGROUND ================= */}
@@ -111,7 +110,10 @@ export default function AboutTedSsec() {
         </motion.div>
 
         {/* ================= RIGHT GLASS CARDS ================= */}
-        <motion.div style={{ y: yRight }} className="relative flex flex-col gap-6">
+        <motion.div
+          style={{ y: yRight }}
+          className="relative flex flex-col gap-6"
+        >
           {[
             {
               tag: "SPEAKERS",
@@ -152,7 +154,7 @@ export default function AboutTedSsec() {
                   opacity: 1,
                   x: 0,
                   transition: {
-                    delay: 0.15 + card.delay, // 🔥 no lag
+                    delay: 0.15 + card.delay,
                     duration: 0.45,
                     ease: "easeOut",
                   },

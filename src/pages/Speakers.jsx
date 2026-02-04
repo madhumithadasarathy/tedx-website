@@ -10,9 +10,12 @@ export default function Speakers() {
 
   useEffect(() => {
     async function sequence() {
+      // 1️⃣ Title first
       await titleControls.start("visible");
-      await captionControls.start("visible");
+      // 2️⃣ Image second
       await imageControls.start("visible");
+      // 3️⃣ Caption last
+      await captionControls.start("visible");
     }
 
     sequence();
@@ -40,12 +43,11 @@ export default function Speakers() {
             flex flex-col
             items-center
             text-center
-
             -translate-y-10
             lg:-translate-y-14
           "
         >
-          {/* CAPTION */}
+          {/* CAPTION (appears LAST now) */}
           <motion.p
             initial="hidden"
             animate={captionControls}
@@ -56,7 +58,7 @@ export default function Speakers() {
               visible: {
                 clipPath: "inset(0 0% 0 0)",
                 transition: {
-                  duration: 2.4,
+                  duration: 1.2, // ⬅ faster
                   ease: "easeInOut",
                 },
               },
@@ -76,7 +78,7 @@ export default function Speakers() {
             Meet the minds behind the ideas.
           </motion.p>
 
-          {/* TITLE */}
+          {/* TITLE (appears FIRST) */}
           <motion.h1
             initial="hidden"
             animate={titleControls}
@@ -87,7 +89,7 @@ export default function Speakers() {
               visible: {
                 clipPath: "inset(0 0% 0 0)",
                 transition: {
-                  duration: 3.0,
+                  duration: 1.6, // ⬅ faster
                   ease: "easeInOut",
                 },
               },
@@ -104,16 +106,16 @@ export default function Speakers() {
           </motion.h1>
         </div>
 
-        {/* IMAGE */}
+        {/* IMAGE (appears SECOND) */}
         <motion.div
-          initial={{ y: 220, opacity: 0 }}
+          initial={{ y: 180, opacity: 0 }}
           animate={imageControls}
           variants={{
             visible: {
               y: 0,
               opacity: 1,
               transition: {
-                duration: 2.4,
+                duration: 1.4, // ⬅ faster
                 ease: "easeInOut",
               },
             },
@@ -136,19 +138,18 @@ export default function Speakers() {
               select-none
               brightness-75
               contrast-125
-
               w-[96%]
               sm:w-[92%]
               md:w-[87%]
               lg:w-[82%]
               xl:w-[78%]
               2xl:w-[75%]
-
               max-w-[1800px]
             "
           />
         </motion.div>
       </section>
+
       <Orbit />
       <Cta />
     </main>
