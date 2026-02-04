@@ -310,37 +310,53 @@ export default function About() {
         experiences, and conversations worth spreading.
       </p>
     </motion.div>
+{/* Team Grid */}
+<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-3 gap-y-5">
+  {[
+    ["Sri Raman M", "Curator", "sriraman.svg"],
+    ["Kanish R B", "Co Curator", "kanish.svg"],
+    ["Dheena Dhayalan R", "Designer", "dheena.svg"],
+    ["Tharushi S S", "Creative Team", "tharushi.svg"],
+    ["Pragati", "Creative Team", "pragati.svg"],
 
-    {/* Team Grid */}
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-3 gap-y-5">
-      {[
-        ["Sri Raman M", "Curator", "/sriraman.svg"],
-        ["Kanish R B", "Co Curator", "kanish.svg"],
-        ["Dheena Dhayalan R", "Designer", "dheena.svg"],
-        ["Karthik Vendhan", "Video Team", "karthik.svg"],
-        ["Pavithran M", "Video Team", "pavithran.svg"],
-        ["Abirami S", "Hospitality Team", "abirami.svg"],
-        ["Tamilvani A S", "Hospitality Team", "tamilvani.svg"],
-        ["Naveen M", "Hospitality Team", "naveen.svg"],
-        ["Gowtham P N", "Logistics Team", "gowtham.svg"],
-        ["Surya S", "Logistics Team", "surya.svg"],
-        ["Tharunkarthi G", "Production Team", "tharunkarthi.svg"],
-        ["Srikanth V T", "Production Team", "srikanth.svg"],
-        ["Anjali", "MC Team", "anjali.svg"],
-        ["Akshaya", "MC Team", "akshaya.svg"],
-        ["Madhumitha Dasarathy", "Creative Team", "madhumitha.svg"],
-        ["Tharushi S S", "Creative Team", "tharushi.svg"],
-        ["Madumitha I V", "Executive Team", "madumitha.svg"],
-        ["Ruthi Shankari S", "Executive Team", "ruthi.svg"],
-      ].map(([name, role, img], i) => (
-        <motion.div
-          key={name}
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
-          transition={{ delay: i * 0.025, duration: 0.6 }}
-          className="text-center"
-        >
+    ["Tamilvani A S", "Hospitality Team", "tamilvani.svg"],
+    ["Abirami S", "Hospitality Team", "abirami.svg"],
+    ["Naveen M", "Hospitality Team", "naveen.svg"],
+
+    ["Gowtham P N", "Logistics Team", "gowtham.svg"],
+    ["Surya S", "Logistics Team", "surya.svg"],
+
+    ["Tharunkarthi G", "Production Team", "tharunkarthi.svg"],
+    ["Srikanth V T", "Production Team", "srikanth.svg"],
+
+    ["Anjali", "MC Team", "anjali.svg"],
+    ["Akshaya", "MC Team", "akshaya.svg"],
+
+    ["Karthik Vendhan", "Video Team", "karthik.svg"],
+    ["Pavithran M", "Video Team", "pavithran.svg"],
+
+    ["Madumitha I V", "Executive Team", "madumitha.svg"],
+    ["Ruthi Shankari S", "Executive Team", "ruthi.svg"],
+
+    // 🔥 LAST & CENTERED
+    ["Madhumitha Dasarathy", "Developer", "madhumitha.svg"],
+  ].map(([name, role, img], i, arr) => {
+    const isLast = i === arr.length - 1;
+
+    return (
+      <motion.div
+        key={name}
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false }}
+        transition={{ delay: i * 0.025, duration: 0.6 }}
+        className={
+          isLast
+            ? "col-span-full flex justify-center"
+            : "text-center"
+        }
+      >
+        <div className="text-center">
           <img
             src={`/team-members/${img}`}
             alt={name}
@@ -362,9 +378,12 @@ export default function About() {
           <p className="text-[10px] text-red-500 mt-0.5">
             {role}
           </p>
-        </motion.div>
-      ))}
-    </div>
+        </div>
+      </motion.div>
+    );
+  })}
+</div>
+
   </div>
 </section>
 
