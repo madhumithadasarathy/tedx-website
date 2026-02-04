@@ -6,6 +6,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 import AboutTed from "./AboutTed.jsx";
 import AboutTedSsec from "../components/AboutTedSsec.jsx";
@@ -87,8 +88,8 @@ export default function Home() {
                 initial={{ y: "100vh" }}
                 animate={{ y: 0 }}
                 transition={{
-                  delay: i * 0.08,      // ⬅ faster stagger
-                  duration: 0.55,       // ⬅ faster entry
+                  delay: i * 0.08,
+                  duration: 0.55,
                   ease: "easeOut",
                 }}
                 style={{ backgroundImage: `url(${img})`, y: yParallax }}
@@ -110,7 +111,7 @@ export default function Home() {
             visible: {
               opacity: 1,
               x: 0,
-              transition: { duration: 0.5, ease: "easeOut" }, // ⬅ faster
+              transition: { duration: 0.5, ease: "easeOut" },
             },
           }}
           initial="hidden"
@@ -130,14 +131,21 @@ export default function Home() {
             Different worlds. One stage.
           </p>
 
+          {/* ACTION BUTTONS */}
           <div className="mt-12 flex flex-row flex-wrap gap-4">
-            <button className="px-6 py-3 md:px-10 md:py-4 bg-red-600 text-xs md:text-sm tracking-widest font-bold hover:bg-red-700 transition rounded shadow-[0_0_20px_rgba(220,38,38,0.5)]">
+            <Link
+              to="/attend"
+              className="px-6 py-3 md:px-10 md:py-4 bg-red-600 text-xs md:text-sm tracking-widest font-bold hover:bg-red-700 transition rounded shadow-[0_0_20px_rgba(220,38,38,0.5)]"
+            >
               ENTER EXPERIENCE
-            </button>
+            </Link>
 
-            <button className="px-6 py-3 md:px-10 md:py-4 border border-white/30 text-xs md:text-sm tracking-widest font-bold hover:bg-white/10 transition rounded hover:border-white">
+            <Link
+              to="/speakers"
+              className="px-6 py-3 md:px-10 md:py-4 border border-white/30 text-xs md:text-sm tracking-widest font-bold hover:bg-white/10 transition rounded hover:border-white"
+            >
               VIEW SPEAKERS
-            </button>
+            </Link>
           </div>
         </motion.div>
       </section>
@@ -161,7 +169,7 @@ export default function Home() {
               opacity: 1,
               scale: 1.05,
               filter: "brightness(1)",
-              transition: { duration: 1.0, ease: "easeOut" }, // ⬅ faster
+              transition: { duration: 1.0, ease: "easeOut" },
             },
           }}
           initial="hidden"
@@ -175,7 +183,7 @@ export default function Home() {
           variants={{ hidden: { opacity: 1 }, visible: { opacity: 0 } }}
           initial="hidden"
           animate={bgControls}
-          transition={{ duration: 0.8 }} // ⬅ faster
+          transition={{ duration: 0.8 }}
           className="absolute inset-0 bg-black"
         />
 
@@ -183,7 +191,7 @@ export default function Home() {
           variants={{ hidden: { opacity: 0 }, visible: { opacity: 0.55 } }}
           initial="hidden"
           animate={bgControls}
-          transition={{ delay: 0.5, duration: 0.45 }} // ⬅ faster
+          transition={{ delay: 0.5, duration: 0.45 }}
           className="absolute inset-0 bg-black"
         />
 
@@ -191,32 +199,32 @@ export default function Home() {
           variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
           initial="hidden"
           animate={bgControls}
-          transition={{ delay: 0.6, duration: 0.45 }} // ⬅ faster
+          transition={{ delay: 0.6, duration: 0.45 }}
           className="absolute inset-0 bg-gradient-to-b from-red-600/30 via-transparent to-black/80"
         />
 
         {/* TEXT */}
         <div className="relative z-10 h-full flex flex-col justify-center items-center gap-2 text-center px-6">
- {kineticWords.map((item, i) => (
-  <motion.h2
-    key={item.text}
-    variants={{
-      hidden: {
-        opacity: 0,
-        x: i % 2 === 0 ? -45 : 45, // less travel = snappier
-      },
-      visible: {
-        opacity: 1,
-        x: 0,
-        transition: {
-          delay: i * 0.07,  // much faster stagger
-          duration: 0.32,   // faster snap
-          ease: "easeOut",
-        },
-      },
-    }}
-    initial="hidden"
-    animate={textControls}
+          {kineticWords.map((item, i) => (
+            <motion.h2
+              key={item.text}
+              variants={{
+                hidden: {
+                  opacity: 0,
+                  x: i % 2 === 0 ? -45 : 45,
+                },
+                visible: {
+                  opacity: 1,
+                  x: 0,
+                  transition: {
+                    delay: i * 0.07,
+                    duration: 0.32,
+                    ease: "easeOut",
+                  },
+                },
+              }}
+              initial="hidden"
+              animate={textControls}
               className={`
                 text-[clamp(1.6rem,4.5vw,3.1rem)]
                 font-black
@@ -224,11 +232,10 @@ export default function Home() {
                 tracking-wide
                 ${item.color}
               `}
-  >
-    {item.text}
-  </motion.h2>
-))}
-
+            >
+              {item.text}
+            </motion.h2>
+          ))}
 
           <motion.div
             initial={{ scaleX: 0 }}
@@ -236,7 +243,7 @@ export default function Home() {
             variants={{
               visible: {
                 scaleX: 1,
-                transition: { delay: 0.85, duration: 0.4 }, // ⬅ faster
+                transition: { delay: 0.85, duration: 0.4 },
               },
             }}
             className="mt-6 h-[3px] w-44 bg-red-600 origin-left rounded-full"
