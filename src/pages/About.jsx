@@ -342,7 +342,7 @@ export default function About() {
     ["Pavithran M", "Video Team", "pavithran.svg"],
 
     ["Madumitha I V", "Executive Team", "madumitha.svg"],
-    ["Ruthi Shankari S", "Executive Team", "ruthi.svg"],
+    ["Ruthi Shankari S", "Executive Team", "ruthi.png"],
 
     // 🔥 LAST & CENTERED
     ["Madhumitha Dasarathy", "Developer", "madhumitha.svg"],
