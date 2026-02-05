@@ -412,6 +412,7 @@ export default function About() {
   {[
     ["Sri Raman M", "Curator", "sriraman.svg"],
     ["Kanish R B", "Co Curator", "kanish.svg"],
+    ["Madhumitha Dasarathy", "Developer", "madhumitha.svg"],
     ["Dheena Dhayalan R", "Designer", "dheena.svg"],
     ["Tharushi S S", "Creative Team", "tharushi.svg"],
     ["Pragati", "Creative Team", "pragati.svg"],
@@ -435,7 +436,7 @@ export default function About() {
     ["Ruthi Shankari S", "Executive Team", "ruthi.svg"],
 
     // 🔥 LAST & CENTERED
-    ["Madhumitha Dasarathy", "Developer", "madhumitha.svg"],
+    
   ].map(([name, role, img], i, arr) => {
     const isLast = i === arr.length - 1;
 
