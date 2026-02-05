@@ -288,6 +288,96 @@ export default function About() {
           </div>
         </div>
       </section>
+      {/* ================= PATRONS SECTION ================= */}
+<section className="relative mb-28">
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.8, ease: "easeOut" }}
+    className="text-center mb-16"
+  >
+    <p className="text-xs tracking-[0.4em] text-white/50 mb-4">
+      OUR PATRONS
+    </p>
+    <h2 className="text-3xl md:text-4xl font-semibold">
+      Guiding <span className="text-red-600">TEDxSairam</span>
+    </h2>
+  </motion.div>
+
+  <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto px-6">
+    {/* Chief Patron */}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay: 0.1 }}
+      className="
+        relative
+        rounded-2xl
+        border border-white/10
+        bg-white/5
+        backdrop-blur-xl
+        p-8
+        text-center
+        hover:border-red-600/40
+        transition
+      "
+    >
+      <img
+        src="/ceo.svg"
+        alt="Mr. Sai Prakash Leo Muthu"
+        className="w-40 h-40 mx-auto mb-6 object-contain"
+      />
+
+      <p className="text-xs tracking-widest text-red-500 mb-2">
+        CHIEF PATRON
+      </p>
+      <h3 className="text-xl font-medium mb-1">
+        Mr. Sai Prakash Leo Muthu
+      </h3>
+      <p className="text-white/60 text-sm">
+        CEO, Sairam Institutions
+      </p>
+    </motion.div>
+
+    {/* Patron */}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay: 0.2 }}
+      className="
+        relative
+        rounded-2xl
+        border border-white/10
+        bg-white/5
+        backdrop-blur-xl
+        p-8
+        text-center
+        hover:border-red-600/40
+        transition
+      "
+    >
+      <img
+        src="/principal.svg"
+        alt="Principal, Sri Sairam Engineering College"
+        className="w-40 h-40 mx-auto mb-6 object-contain"
+      />
+
+      <p className="text-xs tracking-widest text-red-500 mb-2">
+        PATRON
+      </p>
+      <h3 className="text-xl font-medium mb-1">
+        Dr. J. Raja
+      </h3>
+      <p className="text-white/60 text-sm">
+        Principal, Sri Sairam Engineering College
+      </p>
+    </motion.div>
+  </div>
+</section>
+
       {/* ================= SECTION 4 : OUR TEAM ================= */}
 <section className="relative w-full bg-black text-white py-20 overflow-hidden">
   {/* Background accent */}
