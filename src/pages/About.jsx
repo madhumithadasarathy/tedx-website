@@ -417,7 +417,7 @@ export default function About() {
     ["Pragati", "Creative Team", "pragati.svg"],
     ["Abirami S", "Hospitality Team", "abirami.svg"],
     ["Tamilvani A S", "Hospitality Team", "tamilvani.svg"],
-    ["Naveen M", "Hospitality Team", "naveen.svg"],
+    ["Naveen E", "Hospitality Team", "naveen.svg"],
 
     ["Gowtham P N", "Logistics Team", "gowtham.svg"],
     ["Surya S", "Logistics Team", "surya.svg"],
