@@ -11,6 +11,7 @@ export default function Pricing({ onSelect }) {
         "Event Access",
         "Balcony Seating",
         "Refreshments",
+        "Event Kit"
       ],
     },
     {
@@ -22,7 +23,7 @@ export default function Pricing({ onSelect }) {
         "Event Access",
         "Standard Seating",
         "Refreshments",
-        "Event Kit",
+        "Goodies",
       ],
     },
     {
@@ -37,7 +38,7 @@ export default function Pricing({ onSelect }) {
         "Front Row Seating",
         "Exclusive Guest Interaction",
         "Refreshments",
-        "Premium Memento",
+        "Goodies",
       ],
     },
   ];
