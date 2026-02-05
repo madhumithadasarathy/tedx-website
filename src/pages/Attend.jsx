@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Pricing from "../components/Pricing"; // ✅ ADD THIS
+import Pricing from "../components/Pricing";
 
 export default function Attend() {
   const [step, setStep] = useState(1);
@@ -9,7 +9,7 @@ export default function Attend() {
 
   const [form, setForm] = useState({
     name: "",
-    email: "",
+    phone: "",
     dept: "",
     studentId: "",
     ticketType: "",
@@ -85,16 +85,13 @@ export default function Attend() {
 
   return (
     <div className="min-h-screen pt-32 pb-20 px-6 bg-black text-white flex flex-col items-center">
-      {/* Background ambience */}
+      {/* Background */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-red-900/10 to-transparent" />
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-red-600/5 blur-[120px] rounded-full" />
       </div>
 
-      {/* HEADER */}
-
-
-      {/* 🔥 PRICING SECTION */}
+      {/* STEP 1 — PRICING */}
       {step === 1 && (
         <Pricing
           onSelect={(planId) => {
@@ -104,7 +101,6 @@ export default function Attend() {
         />
       )}
 
-      {/* FORM FLOW */}
       <div className="relative z-10 w-full max-w-lg mt-12">
         <AnimatePresence mode="wait">
           {/* STEP 2 — DETAILS */}
@@ -122,15 +118,20 @@ export default function Attend() {
               </h2>
 
               <div className="space-y-4">
-                {["name", "email", "dept", "studentId"].map((f) => (
+                {[
+                  { name: "name", placeholder: "Full Name" },
+                  { name: "phone", placeholder: "Phone Number" },
+                  { name: "dept", placeholder: "Department" },
+                  {
+                    name: "studentId",
+                    placeholder: "Student ID / Roll No.",
+                  },
+                ].map((field) => (
                   <input
-                    key={f}
-                    name={f}
-                    placeholder={
-                      f === "studentId"
-                        ? "Student ID / Roll No."
-                        : f.charAt(0).toUpperCase() + f.slice(1)
-                    }
+                    key={field.name}
+                    name={field.name}
+                    placeholder={field.placeholder}
+                    value={form[field.name]}
                     onChange={update}
                     className="w-full bg-black/50 border border-white/10 rounded-lg p-3 focus:outline-none focus:border-red-600 transition placeholder:text-neutral-600"
                   />
@@ -177,11 +178,7 @@ export default function Attend() {
               </p>
 
               <div className="bg-white p-4 rounded-xl inline-block mb-6">
-                {qr ? (
-                  <img src={qr} alt="UPI QR" className="w-48 h-48" />
-                ) : (
-                  <div className="w-48 h-48 bg-gray-200 animate-pulse" />
-                )}
+                <img src={qr} alt="UPI QR" className="w-48 h-48" />
               </div>
 
               <input
@@ -216,8 +213,7 @@ export default function Attend() {
             >
               <h2 className="text-3xl font-bold mb-4">You're In!</h2>
               <p className="text-neutral-400 mb-8">
-                Your payment is being verified. You will receive your
-                ticket via email shortly.
+                Your payment is being verified. You’ll be contacted soon.
               </p>
               <button
                 onClick={() => (window.location.href = "/")}
