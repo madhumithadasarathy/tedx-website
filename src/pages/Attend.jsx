@@ -248,7 +248,7 @@ export default function Attend() {
         </h3>
         <ul className="text-sm text-white/80 space-y-2 list-disc list-inside">
           <li>Buses are available on the day of the event.</li>
-          <li>The last day for registration is <strong>13th Feb</strong>.</li>
+          <li>The last day for registration is <strong>11th Feb</strong>.</li>
           <li>Other college members are not allowed.</li>
         </ul>
       </motion.div>
