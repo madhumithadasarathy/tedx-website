@@ -183,6 +183,21 @@ const SPEAKERS = [
       { title: "PERSPECTIVE", value: "Communication Psychology" },
     ],
   },
+    {
+    id: "10",
+    name: "Ms. Raksha D Raghavan",
+    role: "Founder & Director, Kala Adhyaayana",
+    bio: "A Bharatanatyam exponent and cultural educator, Raksha D Raghavan blends classical tradition with contemporary relevance. She is the Founder and Director of Kala Adhyaayana, an institution dedicated to structured Bharatanatyam training and research-driven artistic practice. A recipient of the Ministry of Culture’s Scholarship to Young Artist and a B-Grade artist recognised by Doordarshan, she actively bridges heritage, education, and community engagement through performances, workshops, and curated festivals.",
+    image: "/speaker10.svg",
+    link: "#",
+    elements: [
+      { title: "ART FORM", value: "Bharatanatyam • Classical Dance" },
+      { title: "EXPERTISE", value: "Performance • Choreography • Research" },
+      { title: "IMPACT", value: "Cultural Education • Heritage Preservation" },
+      { title: "PERSPECTIVE", value: "Tradition Meets Contemporary Expression" },
+    ],
+  },
+
 ];
 
 /* --------------------------------------------------
