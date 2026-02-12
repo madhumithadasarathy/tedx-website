@@ -303,3 +303,44 @@
 //     </div>
 //   );
 // }
+
+import { motion } from "framer-motion";
+
+export default function Attend() {
+  return (
+    <div className="min-h-screen pt-32 pb-20 px-6 bg-black text-white flex flex-col items-center justify-center">
+      {/* Background */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-red-900/10 to-transparent" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-red-600/5 blur-[120px] rounded-full" />
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="relative z-10 w-full max-w-lg bg-neutral-900/50 border border-white/10 p-10 rounded-2xl backdrop-blur-sm text-center"
+      >
+        <h1 className="text-4xl font-bold mb-6 text-red-600">
+          Tickets Closed
+        </h1>
+
+        <p className="text-neutral-400 mb-8">
+          Registrations for this TEDx event are now officially closed.
+          Thank you for the overwhelming response.
+        </p>
+
+        <div className="border border-red-600/40 bg-red-600/10 rounded-xl p-4 text-sm text-white/80 mb-8">
+          Stay tuned for future events and announcements.
+        </div>
+
+        <button
+          onClick={() => (window.location.href = "/")}
+          className="px-6 py-3 rounded-lg text-sm bg-white/5 hover:bg-white/10 transition text-red-500 underline"
+        >
+          Return to Home
+        </button>
+      </motion.div>
+    </div>
+  );
+}
